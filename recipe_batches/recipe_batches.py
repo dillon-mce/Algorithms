@@ -3,7 +3,13 @@
 import math
 
 def recipe_batches(recipe, ingredients):
-  pass 
+  lcd = None
+  for key in recipe.keys():
+    ingredients.setdefault(key, 0)
+    number_for_ingredient = ingredients[key] // recipe[key]
+    if lcd is None or number_for_ingredient < lcd:
+      lcd = number_for_ingredient
+  return lcd
 
 
 if __name__ == '__main__':
