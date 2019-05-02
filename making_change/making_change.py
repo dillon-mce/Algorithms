@@ -2,9 +2,26 @@
 
 import sys
 
+cache = {}
 def making_change(amount, denominations):
-  pass 
+  return combinations_of_coins(amount, denominations, len(denominations)-1)
 
+def combinations_of_coins(amount, denominations, n):
+  if amount == 0:
+    return 1
+  try:
+    return cache[(amount, n)]
+  except:
+    pass
+  if amount < 0 or n < 0:
+    return 0
+  coin = denominations[n]
+  including = combinations_of_coins(amount-coin, denominations, n)
+  excluding = combinations_of_coins(amount, denominations, n-1)
+
+  result = including + excluding
+  cache[(amount, n)] = result
+  return result
 
 if __name__ == "__main__":
   # Test our your implementation from the command line
