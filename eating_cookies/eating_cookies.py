@@ -2,10 +2,8 @@
 
 import sys
 
-# The cache parameter is here for if you want to implement
-# a solution that is more efficient than the naive 
-# recursive solution
-cache = {0: 1, 1: 1, 2: 2}
+# Caching outside of the recursive call, because the answer for a given n will never change. Even more efficient.
+cache = {0: 1}
 def eating_cookies(n, unused_cache=None):
   if n < 0:
     return 0
